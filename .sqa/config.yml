@@ -1,0 +1,72 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: release/2.1.1
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    github.com/SeisComP/main:
+      branch: master
+      repo: https://github.com/SeisComP/main.git
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/SeisComP/main git:
+        commands:
+        - /usr/bin/env sh .sqa/script.squirrely-razzmatazz-wolverine.sh
+        container: qc.acc_tacky-cream-hound
+  QC.Doc:
+    repos:
+      github.com/SeisComP/main find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.ready-magenta-gerbil.sh
+        container: qc.doc_sloppy-viridian-moorhen
+      github.com/SeisComP/main git:
+        commands:
+        - /usr/bin/env sh .sqa/script.fuzzy-orchid-seahorse.sh
+        container: qc.doc_woolly-heliotrope-indri
+      github.com/SeisComP/main markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.craggy-brass-grasshopper.sh
+        container: qc.doc_wimpy-gamboge-dog
+      github.com/SeisComP/main restructuredtext-lint:
+        commands:
+        - /usr/bin/env sh .sqa/script.zippy-sapphire-emu.sh
+        container: qc.doc_scanty-yellow-flounder
+  QC.Lic:
+    repos:
+      github.com/SeisComP/main licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.lanky-red-gopher.sh
+        container: qc.lic_lumpy-white-devil
+  QC.Sec:
+    repos:
+      github.com/SeisComP/main bandit:
+        commands:
+        - /usr/bin/env sh .sqa/script.frumpy-goldenrod-caterpillar.sh
+        container: qc.sec_hazy-copper-penguin
+  QC.Sty:
+    repos:
+      github.com/SeisComP/main flake8:
+        commands:
+        - /usr/bin/env sh .sqa/script.messy-harlequin-retriever.sh
+        container: qc.sty_slaphappy-lime-echidna
+      github.com/SeisComP/main oclint:
+        commands:
+        - /usr/bin/env sh .sqa/script.wimpy-ochre-kingfisher.sh
+        container: qc.sty_gloppy-burgundy-hedgehog
+  QC.Uni:
+    repos:
+      github.com/SeisComP/main pytest:
+        commands:
+        - /usr/bin/env sh .sqa/script.slaphappy-khaki-hedgehog.sh
+        container: qc.uni_nerdy-cyan-stoat
+  QC.Ver:
+    repos:
+      github.com/SeisComP/main get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.scummy-khaki-hippopotamus.sh
+        container: qc.ver_tacky-amethyst-dingo
+timeout: 5400
